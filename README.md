@@ -1,3 +1,10 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg">
+    <img alt="meOS: assistente executivo pessoal sobre um cofre Obsidian. Google Calendar, Gmail, transcrições e diário falado viram um cofre organizado pelo método PARA." src="assets/hero-light.svg" width="100%">
+  </picture>
+</p>
+
 # meOS (rysOS)
 
 Assistente executivo pessoal que lê Google Calendar, Gmail, transcrições de reunião e

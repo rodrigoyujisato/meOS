@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="t d">
+<title id="t">meOS</title>
+<desc id="d">meOS: assistente executivo pessoal que transforma agenda, e-mail, reuniões e diário falado em um cofre Obsidian organizado.</desc>
+<defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1,1 L9,5 L1,9 z" fill="#111110" fill-opacity="0.7"/></marker></defs>
+<rect width="1280" height="640" fill="#fafaf8"/>
+<rect x="28" y="28" width="1224" height="584" rx="6" fill="none" stroke="#d9d5cc" stroke-width="1"/>
+<text x="80" y="150" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" letter-spacing="3" fill="#666666">ASSISTENTE EXECUTIVO · OBSIDIAN · GEMINI</text>
+<text x="74" y="298" font-family="Georgia, 'Times New Roman', serif" font-size="168" letter-spacing="-4" fill="#111110">me<tspan font-style="italic">OS</tspan></text>
+<text x="80" y="362" font-family="Georgia, 'Times New Roman', serif" font-size="25" fill="#111110">Seu assistente executivo sobre um cofre Obsidian.</text>
+<text x="80" y="402" font-family="Georgia, 'Times New Roman', serif" font-size="21" font-style="italic" fill="#666666">An executive assistant for your Obsidian vault.</text>
+<rect x="80" y="500" width="52" height="34" rx="17" fill="none" stroke="#d9d5cc" stroke-width="1.2"/>
+<text x="106" y="522" text-anchor="middle" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="14" fill="#666666">MIT</text>
+<rect x="144.2" y="500" width="137" height="34" rx="17" fill="none" stroke="#d9d5cc" stroke-width="1.2"/>
+<text x="213" y="522" text-anchor="middle" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="14" fill="#666666">Python 3.11+</text>
+<rect x="293.0" y="500" width="80" height="34" rx="17" fill="none" stroke="#d9d5cc" stroke-width="1.2"/>
+<text x="333" y="522" text-anchor="middle" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="14" fill="#666666">Gemini</text>
+<rect x="385.4" y="500" width="99" height="34" rx="17" fill="none" stroke="#d9d5cc" stroke-width="1.2"/>
+<text x="435" y="522" text-anchor="middle" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="14" fill="#666666">Telegram</text>
+<rect x="640" y="170" width="196" height="46" rx="8" fill="#f0ede6" stroke="#d9d5cc" stroke-width="1"/>
+<text x="738" y="199" text-anchor="middle" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#111110">Google Calendar</text>
+<path d="M836,193 C 884,193 884,322 926,322" fill="none" stroke="#111110" stroke-opacity="0.45" stroke-width="1.4" marker-end="url(#ah)"/>
+<rect x="640" y="238" width="196" height="46" rx="8" fill="#f0ede6" stroke="#d9d5cc" stroke-width="1"/>
+<text x="738" y="267" text-anchor="middle" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#111110">Gmail</text>
+<path d="M836,261 C 884,261 884,322 926,322" fill="none" stroke="#111110" stroke-opacity="0.45" stroke-width="1.4" marker-end="url(#ah)"/>
+<rect x="640" y="306" width="196" height="46" rx="8" fill="#f0ede6" stroke="#d9d5cc" stroke-width="1"/>
+<text x="738" y="335" text-anchor="middle" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#111110">Transcrições</text>
+<path d="M836,329 C 884,329 884,322 926,322" fill="none" stroke="#111110" stroke-opacity="0.45" stroke-width="1.4" marker-end="url(#ah)"/>
+<rect x="640" y="374" width="196" height="46" rx="8" fill="#f0ede6" stroke="#d9d5cc" stroke-width="1"/>
+<text x="738" y="403" text-anchor="middle" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#111110">Diário falado</text>
+<path d="M836,397 C 884,397 884,322 926,322" fill="none" stroke="#111110" stroke-opacity="0.45" stroke-width="1.4" marker-end="url(#ah)"/>
+<rect x="930" y="150" width="270" height="344" rx="10" fill="#f0ede6" stroke="#111110" stroke-opacity="0.85" stroke-width="1.4"/>
+<text x="952" y="184" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" letter-spacing="2" fill="#666666">COFRE OBSIDIAN · PARA</text>
+<line x1="952" y1="198" x2="1178" y2="198" stroke="#d9d5cc" stroke-width="1"/>
+<text x="952" y="232" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="17" fill="#111110"><tspan fill-opacity="0.45">▸ </tspan>00_Cockpit</text>
+<text x="952" y="264" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="17" fill="#111110"><tspan fill-opacity="0.45">▸ </tspan>01_Projects</text>
+<text x="952" y="296" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="17" fill="#111110"><tspan fill-opacity="0.45">▸ </tspan>02_Areas</text>
+<text x="952" y="328" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="17" fill="#111110"><tspan fill-opacity="0.45">▸ </tspan>03_Decisions</text>
+<text x="952" y="360" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="17" fill="#111110"><tspan fill-opacity="0.45">▸ </tspan>04_Meetings</text>
+<text x="952" y="392" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="17" fill="#111110"><tspan fill-opacity="0.45">▸ </tspan>05_People</text>
+<text x="952" y="424" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="17" fill="#111110"><tspan fill-opacity="0.45">▸ </tspan>06_Resources</text>
+<text x="952" y="456" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="17" fill="#111110"><tspan fill-opacity="0.45">▸ </tspan>07_Inbox_Agent</text>
+<text x="1200" y="548" text-anchor="end" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace" font-size="14" fill="#666666">o código monta a estrutura; a IA escreve só as frases</text>
+</svg>
