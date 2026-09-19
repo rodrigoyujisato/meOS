@@ -4,7 +4,11 @@ Assistente executivo pessoal que lê Google Calendar, Gmail, transcrições de r
 diário falado, e mantém sozinho um cofre [Obsidian](https://obsidian.md) organizado pelo
 método PARA. O Google Gemini entra só para linguagem e roteamento: a estrutura das notas
 é sempre gerada por código. Feito para uso pessoal e aberto para quem
-quiser rodar e adaptar. Licença MIT. O pacote e o comando de terminal se chamam `rysos`.
+quiser rodar e adaptar. Licença MIT.
+
+> **Nome:** o repositório se chama meOS; o pacote Python e o comando de terminal se chamam `rysos` (`uv run rysos ...`).
+>
+> **Naming:** the repository is meOS; the Python package and the CLI are called `rysos`.
 
 ## Quick start (English)
 
