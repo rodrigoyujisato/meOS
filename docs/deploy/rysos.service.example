@@ -1,0 +1,22 @@
+# Copie para ~/.config/systemd/user/rysos.service e ajuste os caminhos.
+# Depois: systemctl --user daemon-reload && systemctl --user enable --now rysos
+# Para o serviço rodar sem sessão aberta: loginctl enable-linger "$USER"
+[Unit]
+Description=rysOS (assistente executivo sobre um cofre Obsidian)
+After=network-online.target
+Wants=network-online.target
+# Se o cofre estiver num Drive montado com rclone, descomente:
+# After=gdrive-mount.service
+# Requires=gdrive-mount.service
+
+[Service]
+Type=simple
+WorkingDirectory=%h/rysos
+EnvironmentFile=%h/rysos/.env
+Environment=PYTHONUNBUFFERED=1
+ExecStart=%h/rysos/.venv/bin/rysos serve --host 127.0.0.1 --port 8000
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,17 @@
+# Opcional: monta o Google Drive com rclone para o cofre viver no Drive.
+# Configure antes o remote com `rclone config` (aqui chamado "gdrive"). Ajuste os caminhos.
+[Unit]
+Description=rclone mount do Google Drive (cofre Obsidian)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=notify
+ExecStartPre=/bin/mkdir -p %h/gdrive
+ExecStart=/usr/bin/rclone mount gdrive: %h/gdrive --vfs-cache-mode writes --vfs-cache-max-age 24h --dir-cache-time 30s --poll-interval 15s --umask 022
+ExecStop=/bin/fusermount -u %h/gdrive
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=default.target

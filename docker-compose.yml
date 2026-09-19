@@ -1,0 +1,22 @@
+# Uso: docker compose up -d --build
+# Antes: cp .env.example .env (preencha), crie a pasta ./vault (ou aponte VAULT_DIR),
+# e conecte suas contas Google UMA vez com `rysos auth` (veja o README): o OAuth abre um
+# navegador local, então roda na sua máquina e o contêiner só lê a pasta ./tokens.
+services:
+  rysos:
+    build: .
+    container_name: rysos
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      TZ: ${TIMEZONE:-America/Sao_Paulo}
+      OBSIDIAN_VAULT_PATH: /vault
+    ports:
+      # Sem autenticação na interface web: só localhost. Para acesso remoto, use VPN/túnel.
+      - "127.0.0.1:${PORT:-8000}:8000"
+    volumes:
+      - ./data:/app/data
+      - ./tokens:/app/tokens
+      - ./credentials.json:/app/credentials.json:ro
+      - ${VAULT_DIR:-./vault}:/vault

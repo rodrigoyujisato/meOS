@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>rysOS — Executive Operating System</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%2306b6d4'/><text x='50' y='65' font-size='45' font-weight='bold' fill='%23ffffff' text-anchor='middle'>R</text></svg>">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header>
+      <div class="logo-area">
+        <div class="logo-badge">R</div>
+        <div class="logo-title">
+          <h1>rysOS Cockpit</h1>
+          <p>Obsidian Governance & Decision AI</p>
+        </div>
+      </div>
+      <div class="status-badges">
+        <span id="auth-badge" class="badge badge-warning"><span class="badge-dot"></span> Google Workspace</span>
+        <span id="gemini-badge" class="badge badge-warning"><span class="badge-dot"></span> Gemini AI</span>
+        <span id="tokens-badge" class="badge badge-info" style="cursor: pointer;" onclick="openTokenObservabilityModal()" title="Clique para ver Observabilidade de Tokens e Custos">
+          <span class="badge-dot"></span> <span id="tokens-text">0 tokens hoje</span>
+        </span>
+      </div>
+    </header>
+
+    <!-- Main Dashboard Grid -->
+    <div class="dashboard-grid">
+      <!-- Left Column: Cockpit Diário -->
+      <section class="card">
+        <div class="card-header">
+          <h2 class="card-title">🚀 Cockpit Diário</h2>
+          <span style="font-size: 0.75rem; color: #94a3b8;">Obsidian Vault</span>
+        </div>
+        <div id="cockpit-content" class="markdown-body">
+          <p style="color: #94a3b8;">Carregando dados do cockpit...</p>
+        </div>
+      </section>
+
+      <!-- Right Column: Projetos & Decisões -->
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <!-- Projetos Ativos -->
+        <section class="card">
+          <div class="card-header">
+            <h2 class="card-title">📁 Projetos Ativos (01_Projects)</h2>
+          </div>
+          <div id="projects-list" class="item-list">
+            <p style="color: #94a3b8; font-size: 0.85rem;">Carregando projetos...</p>
+          </div>
+        </section>
+
+        <!-- Diário de Decisões -->
+        <section class="card">
+          <div class="card-header">
+            <h2 class="card-title">⚖️ Decisões Críticas (03_Decisions)</h2>
+          </div>
+          <div id="decisions-list" class="item-list">
+            <p style="color: #94a3b8; font-size: 0.85rem;">Carregando decisões...</p>
+          </div>
+        </section>
+
+        <!-- Executive AI Chat Assistant -->
+        <section class="card">
+          <div class="card-header">
+            <h2 class="card-title">🧠 Assistente Executivo Gemini</h2>
+          </div>
+          <div class="chat-box">
+            <div id="chat-messages" class="chat-messages">
+              <div class="chat-bubble chat-agent">
+                Olá the owner! Estou sincronizado com o seu cofre e rotina executiva. Como posso apoiar suas decisões e gestão de tempo hoje?
+              </div>
+            </div>
+            <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+              <input id="chat-input" class="form-control" type="text" placeholder="Pergunte ao rysOS ou peça uma análise..." onkeydown="if(event.key==='Enter') sendChatMessage()">
+              <button class="btn btn-primary" onclick="sendChatMessage()">Enviar</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation Menu -->
+  <nav class="mobile-nav">
+    <button class="nav-tab active" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+      <span>🚀</span>
+      <span>Cockpit</span>
+    </button>
+    <button class="nav-tab" onclick="openModal('quick-capture-modal')">
+      <span>💡</span>
+      <span>Captura</span>
+    </button>
+    <button class="nav-tab" onclick="openModal('new-decision-modal')">
+      <span>⚖️</span>
+      <span>Decisão</span>
+    </button>
+    <button class="nav-tab" onclick="openTokenObservabilityModal()">
+      <span>📊</span>
+      <span>Tokens IA</span>
+    </button>
+    <button id="sync-btn" class="nav-tab" onclick="triggerSync()">
+      <span>🔄</span>
+      <span>Sync</span>
+    </button>
+  </nav>
+
+  <!-- Modal: Quick Capture (Híbrido com Aprovação IA) -->
+  <div id="quick-capture-modal" class="modal-overlay">
+    <div class="modal" style="max-width: 600px; width: 95%;">
+      <!-- Etapa 1: Digitação -->
+      <div id="qc-step-input">
+        <h3 style="margin-bottom: 1rem;">💡 Captura Rápida</h3>
+        <div class="form-group">
+          <label>Destino no Obsidian:</label>
+          <select id="qc-category" class="form-control" onchange="updateQcPlaceholder()">
+            <option value="today">📅 00_Cockpit (Ação / Foco de Hoje)</option>
+            <option value="inbox">📥 07_Inbox_Agent (Triagem Automática por IA)</option>
+            <option value="idea" selected>💡 06_Resources (Ideias & Criatividade)</option>
+            <option value="framework">📚 06_Resources (Frameworks & Métodos)</option>
+            <option value="project">🚀 01_Projects (Novo Projeto)</option>
+            <option value="decision">⚖️ 03_Decisions (Nova Decisão / Trade-off)</option>
+            <option value="person">👤 05_People (Novo Contato / Pessoa)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label id="qc-text-label">Conteúdo:</label>
+          <textarea id="qc-text" class="form-control" rows="4" placeholder="Escreva aqui seu insight, anotação ou ideia criativa..."></textarea>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 0.5rem; flex-wrap: wrap;">
+          <button class="btn btn-secondary" onclick="closeModal('quick-capture-modal')">Cancelar</button>
+          <button class="btn btn-secondary" onclick="submitQuickCapture()" title="Salva sem passar por IA">💾 Salvar Direto</button>
+          <button id="btn-refine-ia" class="btn btn-primary" onclick="refineQuickCapture()">✨ Refinar com IA</button>
+        </div>
+      </div>
+
+      <!-- Etapa 2: Revisão & Aprovação Prévia (Human-in-the-Loop) -->
+      <div id="qc-step-review" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <h3 style="margin: 0;">🔍 Aprovação Executiva da Nota</h3>
+          <span style="font-size: 0.75rem; background: rgba(59,130,246,0.2); color: var(--accent); padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: bold;">✨ Gemini 3.5 Flash Lite</span>
+        </div>
+        <p id="qc-refined-summary" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem; font-style: italic;"></p>
+        
+        <div class="form-group">
+          <label>Título da Nota no Obsidian:</label>
+          <input id="qc-refined-title" class="form-control" type="text" placeholder="Título da nota...">
+        </div>
+
+        <div class="form-group">
+          <label>Conteúdo Markdown Formatado (Editável antes de salvar):</label>
+          <textarea id="qc-refined-content" class="form-control" rows="8" style="font-family: monospace; font-size: 0.85rem; line-height: 1.4;"></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+          <button class="btn btn-secondary" onclick="backToQcInput()">⬅️ Voltar / Editar</button>
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="btn btn-secondary" onclick="refineQuickCapture()" title="Tentar gerar novamente">🔄 Regenerar</button>
+            <button class="btn btn-primary" onclick="approveAndSaveQuickCapture()">✅ Aprovar & Gravar no rysOS</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Nova Decisão -->
+  <div id="new-decision-modal" class="modal-overlay">
+    <div class="modal">
+      <h3 style="margin-bottom: 1rem;">⚖️ Registrar Nova Decisão</h3>
+      <div class="form-group">
+        <label>Título da Decisão:</label>
+        <input id="dec-title" class="form-control" type="text" placeholder="Ex: Contratação de Líder de Engenharia">
+      </div>
+      <div class="form-group">
+        <label>Prioridade:</label>
+        <select id="dec-priority" class="form-control">
+          <option value="alta">🔴 Alta Prioridade</option>
+          <option value="baixa">⚪ Baixa Prioridade</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Contexto & Premissas:</label>
+        <textarea id="dec-context" class="form-control" rows="3" placeholder="Contexto do problema e alternativas analisadas..."></textarea>
+      </div>
+      <div style="display: flex; justify-content: flex-end; gap: 0.5rem;">
+        <button class="btn btn-secondary" onclick="closeModal('new-decision-modal')">Cancelar</button>
+        <button class="btn btn-primary" onclick="submitNewDecision()">Registrar no Obsidian</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Observabilidade de Tokens & Custos -->
+  <div id="token-observability-modal" class="modal-overlay">
+    <div class="modal" style="max-width: 700px; width: 95%;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+        <div>
+          <h3 style="display: flex; align-items: center; gap: 0.5rem;">
+            <span>📊</span> Observabilidade de IA & Governança de Tokens
+          </h3>
+          <p style="color: #94a3b8; font-size: 0.8rem; margin-top: 0.25rem;">
+            Auditoria em tempo real de consumo do Google Gemini (<span id="modal-gemini-model" style="color: #06b6d4;">-</span>)
+          </p>
+        </div>
+        <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem;" onclick="closeModal('token-observability-modal')">✕</button>
+      </div>
+
+      <!-- Metrics Cards Grid -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.75rem; margin-bottom: 1.25rem;">
+        <div class="metric-card">
+          <div class="metric-label">Tokens Hoje</div>
+          <div id="metric-today-tokens" class="metric-val" style="color: #06b6d4;">0</div>
+          <div id="metric-today-sub" class="metric-sub">P: 0 | O: 0</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Custo Hoje</div>
+          <div id="metric-today-cost" class="metric-val" style="color: #10b981;">$0.0000</div>
+          <div id="metric-today-cost-brl" class="metric-sub">~R$ 0.0000</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Chamadas Hoje</div>
+          <div id="metric-today-calls" class="metric-val" style="color: #f59e0b;">0</div>
+          <div class="metric-sub">operações de IA</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Total Histórico</div>
+          <div id="metric-total-tokens" class="metric-val" style="color: #a855f7;">0</div>
+          <div id="metric-total-cost" class="metric-sub">$0.0000 total</div>
+        </div>
+      </div>
+
+      <!-- Operations Breakdown Table -->
+      <div style="margin-bottom: 1.25rem;">
+        <h4 style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.5rem;">Consumo por Tipo de Operação</h4>
+        <div style="overflow-x: auto; background: rgba(0,0,0,0.2); border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.8rem; text-align: left;">
+            <thead>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.1); color: #94a3b8;">
+                <th style="padding: 0.5rem 0.75rem;">Operação</th>
+                <th style="padding: 0.5rem 0.75rem; text-align: right;">Chamadas</th>
+                <th style="padding: 0.5rem 0.75rem; text-align: right;">Total Tokens</th>
+                <th style="padding: 0.5rem 0.75rem; text-align: right;">Custo Est.</th>
+              </tr>
+            </thead>
+            <tbody id="token-operations-tbody">
+              <tr>
+                <td colspan="4" style="padding: 1rem; text-align: center; color: #94a3b8;">Nenhum consumo registrado ainda.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Recent AI Calls -->
+      <div>
+        <h4 style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.5rem;">Últimas Chamadas Registradas</h4>
+        <div id="token-recent-logs" style="max-height: 140px; overflow-y: auto; font-size: 0.75rem; font-family: monospace; background: rgba(0,0,0,0.3); padding: 0.5rem; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
+          <p style="color: #94a3b8;">Nenhum log recente.</p>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.25rem;">
+        <span style="font-size: 0.7rem; color: #64748b;">Preços baseados na tabela oficial da API Google Gemini</span>
+        <button class="btn btn-secondary" onclick="closeModal('token-observability-modal')">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "rysOS Executive OS",
+  "short_name": "rysOS",
+  "description": "Executive Operating System & Decision Governance for Obsidian",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%2306b6d4'/><text x='50' y='65' font-size='45' font-weight='bold' fill='%23ffffff' text-anchor='middle'>R</text></svg>",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

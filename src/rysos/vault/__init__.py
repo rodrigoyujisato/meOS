@@ -1,0 +1,25 @@
+"""Vault module exports."""
+
+from rysos.vault.manager import VaultManager
+from rysos.vault.templates import (
+    DAILY_COCKPIT_TEMPLATE,
+    WEEKLY_REVIEW_TEMPLATE,
+    PROJECT_TEMPLATE,
+    AREA_NEGOCIOS_MOC_TEMPLATE,
+    AREA_GENERIC_TEMPLATE,
+    DECISION_TEMPLATE,
+    MEETING_TEMPLATE,
+    PERSON_TEMPLATE,
+)
+
+__all__ = [
+    "VaultManager",
+    "DAILY_COCKPIT_TEMPLATE",
+    "WEEKLY_REVIEW_TEMPLATE",
+    "PROJECT_TEMPLATE",
+    "AREA_NEGOCIOS_MOC_TEMPLATE",
+    "AREA_GENERIC_TEMPLATE",
+    "DECISION_TEMPLATE",
+    "MEETING_TEMPLATE",
+    "PERSON_TEMPLATE",
+]

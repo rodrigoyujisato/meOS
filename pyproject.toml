@@ -1,0 +1,51 @@
+[project]
+name = "rysos"
+version = "0.1.0"
+description = "rysOS: Executive Operating System for Obsidian governed by Gemini AI"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+keywords = ["obsidian", "assistant", "gemini", "telegram", "gmail", "google-calendar"]
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.32.0",
+    "pydantic>=2.9.0",
+    "pydantic-settings>=2.5.0",
+    "google-genai>=0.1.1",
+    "google-auth>=2.35.0",
+    "google-auth-oauthlib>=1.2.1",
+    "google-auth-httplib2>=0.2.0",
+    "google-api-python-client>=2.148.0",
+    "sqlalchemy>=2.0.35",
+    "aiosqlite>=0.20.0",
+    "apscheduler>=3.10.4",
+    "jinja2>=3.1.4",
+    "python-dotenv>=1.0.1",
+    "typer>=0.12.5",
+    "rich>=13.9.2",
+    "httpx>=0.27.2",
+]
+
+[project.urls]
+Homepage = "https://github.com/rodrigoyujisato/meOS"
+Repository = "https://github.com/rodrigoyujisato/meOS"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.3",
+    "pytest-asyncio>=0.24.0",
+    "pytest-mock>=3.14.0",
+]
+
+[project.scripts]
+rysos = "rysos.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+pythonpath = ["src"]
